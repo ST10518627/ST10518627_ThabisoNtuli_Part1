@@ -100,9 +100,70 @@ public class PROG5121DESGN1 {
  
         int action = Integer.parseInt(input.nextLine());
         System.out.println(msg.sendMessageOption(action));;
+        
+        
+        
     }
 
 
+    
+     // ===================== PART 3: Stored Messages Menu =====================
+    public static void storedMessagesMenu(Scanner input) {
+        boolean back = false;
+
+        while (!back) {
+            System.out.println("\n--- Stored Messages Menu ---");
+            System.out.println("1) Display all stored messages");
+            System.out.println("2) Display longest message");
+            System.out.println("3) Search by Message ID");
+            System.out.println("4) Search by Recipient");
+            System.out.println("5) Delete message by hash");
+            System.out.println("6) Display full report");
+            System.out.println("7) Back to main menu");
+            System.out.print("Choice: ");
+
+            int choice = Integer.parseInt(input.nextLine());
+
+            switch (choice) {
+                case 1:
+                    System.out.println(Message.displayStoredMessages());
+                    break;
+
+                case 2:
+                    System.out.println(Message.displayLongestMessage());
+                    break;
+
+                case 3:
+                    System.out.print("Enter Message ID to search: ");
+                    String id = input.nextLine();
+                    System.out.println(Message.searchByMessageID(id));
+                    break;
+
+                case 4:
+                    System.out.print("Enter recipient number to search: ");
+                    String recipient = input.nextLine();
+                    System.out.println(Message.searchByRecipient(recipient));
+                    break;
+
+                case 5:
+                    System.out.print("Enter message hash to delete: ");
+                    String hash = input.nextLine();
+                    System.out.println(Message.deleteMessageByHash(hash));
+                    break;
+
+                case 6:
+                    System.out.println(Message.displayReport());
+                    break;
+
+                case 7:
+                    back = true;
+                    break;
+
+                default:
+                    System.out.println("Invalid option. Please choose 1-7.");
+            }
+        }
+    }
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -167,8 +228,8 @@ public class PROG5121DESGN1 {
         
         //Login 
         System.out.println("\nLogin");
-        
-        
+           
+          
         //Login using loops
         String enteredUsername;
         String enteredPassword;
@@ -222,7 +283,8 @@ public class PROG5121DESGN1 {
             System.out.println("\nSelect an Option:");
             System.out.println("1. Send Messages");
             System.out.println("2. Show recently sent messages");
-            System.out.println("3. Quit");
+            System.out.println("3. Stored Messages");
+            System.out.println("4. Quit");
             System.out.print("Choice: ");
  
             int choice = Integer.parseInt(input.nextLine());
@@ -236,17 +298,23 @@ public class PROG5121DESGN1 {
                         System.out.println("Maximum Messages Reached. You may not send more.");
                     }
                     break;
+                    
+                    
  
                 case 2:
                     System.out.println("Coming Soon.");
                     break;
- 
+                    
                 case 3:
+                    storedMessagesMenu(input);
+                    break;
+ 
+                case 4:
                     exit = true;
                     break;
  
                 default:
-                    System.out.println("Invalid option. Please choose 1, 2, or 3.");
+                    System.out.println("Invalid option. Please choose 1-4.");
             }
         }
  
@@ -254,9 +322,15 @@ public class PROG5121DESGN1 {
         System.out.println("\nTotal messages sent: " + Message.returnTotalMessages());
         System.out.println(Message.printMessages());
  
-        input.close();       
+        input.close(); 
+        
+        
+      
     }
 }
+ 
+    
+    
     
     
     
